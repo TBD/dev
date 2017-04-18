@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  redis:
+    image: redis:alpine
+    volumes:
+      - $TBDDEV_APP:/app
+    networks:
+      - tbd-dev
+
+  coffee:
+    build:
+      context: ./
+      dockerfile: Dockerfile-coffee
+    ports:
+      - "5000:3000"
+    env_file:
+      - $TBDDEV_APP/.env
+    volumes:
+      - $TBDDEV_APP:/app
+    depends_on:
+      - redis
+    networks:
+      - tbd-dev      
+
+  # nginx:
+  #   image: nginx:alpine
+  #   entrypoint: nginx -c /conf/nginx.conf
+  #   volumes:
+  #     - $TBDDEV_APP:/app
+  #     - ./conf:/conf
+  #   ports:
+  #     - "5555:80"
+  #   depends_on:
+  #     - redis
+  #     - coffee
+  #   networks:
+  #     - tbd-dev
+
+networks:
+  tbd-dev:
+    driver: bridge
