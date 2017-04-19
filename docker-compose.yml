@@ -4,7 +4,7 @@ services:
   redis:
     image: redis:alpine
     volumes:
-      - $TBDDEV_APP:/app
+      - $TBDDEV_APP:/data
     networks:
       - tbd-dev
 
@@ -13,7 +13,7 @@ services:
       context: ./
       dockerfile: Dockerfile-coffee
     ports:
-      - "5000:3000"
+      - "${TBDDEV_PORT}:3000"
     env_file:
       - $TBDDEV_APP/.env
     volumes:
