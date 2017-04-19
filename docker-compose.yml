@@ -6,7 +6,7 @@ services:
     volumes:
       - $TBDDEV_APP:/data
     networks:
-      - tbd-dev
+      - net
 
   coffee:
     build:
@@ -21,7 +21,7 @@ services:
     depends_on:
       - redis
     networks:
-      - tbd-dev      
+      - net      
 
   # nginx:
   #   image: nginx:alpine
@@ -35,8 +35,8 @@ services:
   #     - redis
   #     - coffee
   #   networks:
-  #     - tbd-dev
+  #     - net
 
 networks:
-  tbd-dev:
+  net:
     driver: bridge
