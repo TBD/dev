@@ -3,4 +3,5 @@ RUN apk --update add nodejs
 WORKDIR /app
 RUN npm install -g coffeescript
 RUN npm install -g nodemon
+RUN npm install
 CMD nodemon -i .json ./server.coffee
