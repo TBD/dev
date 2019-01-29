@@ -1,5 +1,5 @@
-FROM gliderlabs/alpine
-RUN apk --update add nodejs
+FROM alpine
+RUN apk --update add nodejs npm
 WORKDIR /app
 RUN npm install -g coffeescript
 RUN npm install -g nodemon
